@@ -11,11 +11,6 @@ def fetch_data(animal_name):
     return response.json()
 
 
-# Load animal data
-animal_name = input("Enter a name of an animal: ")
-animals_data = fetch_data(animal_name)
-
-
 def serialize_animal(animal):
     """Converts one animal object into an HTML list item."""
     output = ""
@@ -42,11 +37,18 @@ def serialize_animal(animal):
     return output
 
 
-# Build output string instead of printing
-output = ""
+# Load animal data
+animal_name = input("Enter a name of an animal: ")
+animals_data = fetch_data(animal_name)
 
-for animal in animals_data:
-    output += serialize_animal(animal)
+if len(animals_data) == 0:
+    output = f'<h2>The animal "{animal_name}" doesn\'t exist.</h2>'
+else:
+    # Build output string instead of printing
+    output = ""
+
+    for animal in animals_data:
+        output += serialize_animal(animal)
 
 # Read HTML template
 with open("animals_template.html", "r") as file:
