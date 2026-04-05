@@ -58,3 +58,4 @@ html_content = html_template.replace("__REPLACE_ANIMALS_INFO__", output)
 # Write new HTML file
 with open("animals.html", "w") as file:
     file.write(html_content)
+    print("Website was successfully generated to the file animals.html.")
